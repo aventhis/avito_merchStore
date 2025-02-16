@@ -21,7 +21,7 @@ func NewAuthService(db *sql.DB, JWTSecret string) *AuthService {
 	}
 }
 
-func (s *AuthService) Login(username string, password string) (string, error) {
+func (s *AuthService) Authenticate(username string, password string) (string, error) {
 	var user models.User
 	err := s.db.QueryRow("SELECT id, username, password_hash, coins FROM users WHERE username=$1", username).Scan(&user.ID, &user.Username, &user.PasswordHash, &user.Coins)
 	if err == sql.ErrNoRows {

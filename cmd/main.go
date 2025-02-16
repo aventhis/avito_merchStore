@@ -3,12 +3,14 @@ package main
 import (
 	"avito_merchStore/internal/config"
 	"avito_merchStore/internal/repository"
+	"avito_merchStore/internal/routes"
 	"avito_merchStore/internal/service"
 	"github.com/gin-gonic/gin"
 	"log"
 )
 
 func main() {
+	// Загружаем конфигурацию из переменных окружения
 	cfg := config.LoadConfig()
 
 	// Инициализируем подключение к БД PostgreSQL
@@ -25,5 +27,11 @@ func main() {
 
 	// Создаем роутер с использованием Gin
 	router := gin.Default()
+	// Регистрируем маршруты, передаем также JWT-секрет из конфига
+	routes.RegisterRoutes(router, authService, merchService, coinService, db, cfg.JWTSecret)
 
+	// Запускаем сервер на указанном порту (из конфига)
+	if err := router.Run(":" + cfg.ServerPort); err != nil {
+		log.Fatalf("Ошибка запуска сервера: %v", err)
+	}
 }
