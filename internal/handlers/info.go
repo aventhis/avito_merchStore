@@ -45,7 +45,7 @@ func (h *InfoHandler) GetInfo(c *gin.Context) {
 		return
 	}
 
-	// Получаем инвентарь (например, покупки мерча)
+	// Получаем инвентарь
 	rowsInv, err := h.db.Query("SELECT item, quantity FROM purchases WHERE user_id=$1", userID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"errors": err.Error()})
