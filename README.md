@@ -29,5 +29,6 @@ docker-compose up --build
 
 Это поднимет два контейнера:
 
-avito-shop-service: Go-приложение, слушающее на порту 8080.
+avito-shop-service: Go-приложение, слушающее на порту 8080. 
+
 db: PostgreSQL (порт 5432).
