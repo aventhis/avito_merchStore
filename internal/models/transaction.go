@@ -6,7 +6,7 @@ type TransactionType string
 
 const (
 	TransactionTypePurchase TransactionType = "PURCHASE"
-	TransactionTypeCredit   TransactionType = "TRANSFER"
+	TransactionTypeTransfer TransactionType = "TRANSFER"
 )
 
 type Transaction struct {
