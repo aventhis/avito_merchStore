@@ -27,6 +27,12 @@ cd avito_merch_store
 docker-compose up --build
 ```
 
+### Запуск тестов 
+```sh
+docker-compose up -d --build db
+go test -v ./...
+```
+
 Это поднимет два контейнера:
 
 avito-shop-service: Go-приложение, слушающее на порту 8080. 
