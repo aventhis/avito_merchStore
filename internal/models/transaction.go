@@ -14,6 +14,6 @@ type Transaction struct {
 	UserID      int64           `db:"user_id"`
 	Type        TransactionType `db:"type"`
 	Amount      int             `db:"amount"`
-	Counterpart string          `db:"counterpart"` // для transfer – имя контрагента, для покупки – название товара
+	Counterpart string          `db:"counterpart"` // Для transfer – имя контрагента, для покупки – название товара
 	CreatedAt   time.Time       `db:"created_at"`
 }
