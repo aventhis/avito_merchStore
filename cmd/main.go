@@ -4,6 +4,7 @@ import (
 	"avito_merchStore/internal/config"
 	"avito_merchStore/internal/repository"
 	"avito_merchStore/internal/service"
+	"github.com/gin-gonic/gin"
 	"log"
 )
 
@@ -21,5 +22,8 @@ func main() {
 	authService := service.NewAuthService(db, cfg.JWTSecret)
 	merchService := service.NewMerchService(db)
 	coinService := service.NewCoinService(db)
+
+	// Создаем роутер с использованием Gin
+	router := gin.Default()
 
 }
