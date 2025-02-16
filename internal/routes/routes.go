@@ -1,3 +1,4 @@
+// Package routes определяет маршруты HTTP-сервера.
 package routes
 
 import (
@@ -9,6 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// RegisterRoutes регистрирует публичные и защищённые маршруты для приложения.
 func RegisterRoutes(router *gin.Engine, authService *service.AuthService, merchService *service.MerchService, coinService *service.CoinService, db *sql.DB, jwtSecret string) {
 	// Публичный эндпоинт для аутентификации
 	authHandler := handlers.NewAuthHandler(authService)

@@ -1,3 +1,4 @@
+// Package service реализует бизнес-логику приложения.
 package service
 
 import (
@@ -6,10 +7,12 @@ import (
 	"errors"
 )
 
+// CoinService предоставляет методы для операций с монетами.
 type CoinService struct {
 	db *sql.DB
 }
 
+// NewCoinService создаёт новый экземпляр CoinService.
 func NewCoinService(db *sql.DB) *CoinService {
 	return &CoinService{db: db}
 }

@@ -1,17 +1,22 @@
+// Package config предоставляет функции для загрузки конфигурационных параметров
+// из переменных окружения с заданными значениями по умолчанию.
 package config
 
 import "os"
 
+// Config содержит настройки подключения к базе данных, настройки сервера и секрет для JWT.
 type Config struct {
-	DBHost     string
-	DBPort     string
-	DBUser     string
-	DBPassword string
-	DBName     string
-	ServerPort string
-	JWTSecret  string
+	DBHost     string // Хост базы данных (например, localhost)
+	DBPort     string // Порт базы данных (например, 5432)
+	DBUser     string // Имя пользователя базы данных (например, postgres)
+	DBPassword string // Пароль пользователя базы данных
+	DBName     string // Название базы данных (например, shop)
+	ServerPort string // Порт, на котором запущен сервер (например, 8080)
+	JWTSecret  string // Секрет для подписывания JWT-токенов
 }
 
+// LoadConfig загружает конфигурацию из переменных окружения. Если переменная не задана,
+// используется значение по умолчанию.
 func LoadConfig() *Config {
 	return &Config{
 		DBHost:     getEnv("DATABASE_HOST", "localhost"),

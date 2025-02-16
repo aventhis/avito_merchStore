@@ -1,10 +1,13 @@
+// Package models содержит определения структур данных, используемых в проекте.
 package models
 
+// Merch представляет мерч с именем и ценой.
 type Merch struct {
-	Name  string
-	Price int
+	Name  string // Название мерча
+	Price int    // Цена мерча в монетах
 }
 
+// MerchList содержит список доступного мерча и их цены.
 var MerchList = []Merch{
 	{"t-shirt", 80},
 	{"cup", 20},

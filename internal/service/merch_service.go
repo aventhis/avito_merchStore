@@ -1,3 +1,4 @@
+// Package service реализует бизнес-логику приложения.
 package service
 
 import (
@@ -6,14 +7,18 @@ import (
 	"errors"
 )
 
+// MerchService предоставляет методы для работы с покупкой мерча.
 type MerchService struct {
 	db *sql.DB
 }
 
+// NewMerchService создаёт новый экземпляр MerchService.
 func NewMerchService(db *sql.DB) *MerchService {
 	return &MerchService{db: db}
 }
 
+// PurchaseMerch осуществляет покупку мерча пользователем.
+// Проверяет, существует ли товар в списке, и достаточно ли монет у пользователя.
 func (s *MerchService) PurchaseMerch(userID int64, item string) error {
 	var price int
 	found := false

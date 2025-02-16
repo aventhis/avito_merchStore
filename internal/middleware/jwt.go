@@ -1,3 +1,4 @@
+// Package middleware содержит middleware для аутентификации запросов с использованием JWT.
 package middleware
 
 import (
@@ -7,7 +8,7 @@ import (
 	"strings"
 )
 
-// JWTAuthMiddleware проверяет наличие и корректность JWT-токена в заголовке Authorization.
+// JWTAuthMiddleware проверяет JWT-токен из заголовка Authorization и устанавливает user_id и username в контекст.
 func JWTAuthMiddleware(jwtSecret string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.GetHeader("Authorization")

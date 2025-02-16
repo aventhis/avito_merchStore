@@ -1,3 +1,4 @@
+// Package handlers содержит HTTP-обработчики для операций с монетами.
 package handlers
 
 import (
@@ -7,19 +8,23 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// SendCoinHandler обрабатывает запросы на перевод монет.
 type SendCoinHandler struct {
 	coinService *service.CoinService
 }
 
+// NewSendCoinHandler создаёт новый экземпляр SendCoinHandler.
 func NewSendCoinHandler(coinService *service.CoinService) *SendCoinHandler {
 	return &SendCoinHandler{coinService: coinService}
 }
 
+// SendCoinRequest представляет тело запроса на перевод монет.
 type SendCoinRequest struct {
 	ToUser string `json:"toUser"`
 	Amount int    `json:"amount"`
 }
 
+// SendCoin обрабатывает запрос на перевод монет.
 func (h *SendCoinHandler) SendCoin(c *gin.Context) {
 	userID := c.GetInt64("user_id")
 	username := c.GetString("username")

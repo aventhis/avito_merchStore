@@ -1,3 +1,4 @@
+// Package handlers содержит HTTP-обработчики для получения информации о пользователе.
 package handlers
 
 import (
@@ -7,19 +8,23 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// InfoHandler обрабатывает запросы по получению информации о балансе, инвентаре и переводах.
 type InfoHandler struct {
 	db *sql.DB
 }
 
+// NewInfoHandler создаёт новый InfoHandler.
 func NewInfoHandler(db *sql.DB) *InfoHandler {
 	return &InfoHandler{db: db}
 }
 
+// InventoryItem представляет элемент инвентаря пользователя.
 type InventoryItem struct {
 	Type     string `json:"type"`
 	Quantity int    `json:"quantity"`
 }
 
+// CoinTransaction представляет транзакцию перевода монет.
 type CoinTransaction struct {
 	// Для полученных транзакций – от кого получены монеты
 	FromUser string `json:"fromUser,omitempty"`
@@ -28,12 +33,14 @@ type CoinTransaction struct {
 	Amount int    `json:"amount"`
 }
 
+// InfoResponse представляет ответ с балансом, инвентарём и историей переводов.
 type InfoResponse struct {
 	Coins       int                          `json:"coins"`
 	Inventory   []InventoryItem              `json:"inventory"`
 	CoinHistory map[string][]CoinTransaction `json:"coinHistory"`
 }
 
+// GetInfo обрабатывает запрос на получение информации пользователя.
 func (h *InfoHandler) GetInfo(c *gin.Context) {
 	userID := c.GetInt64("user_id")
 

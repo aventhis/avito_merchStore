@@ -1,3 +1,4 @@
+// Package service реализует бизнес-логику приложения.
 package service
 
 import (
@@ -9,11 +10,13 @@ import (
 	"time"
 )
 
+// AuthService предоставляет методы для аутентификации пользователей.
 type AuthService struct {
 	db        *sql.DB
 	JWTSecret string
 }
 
+// NewAuthService создаёт новый экземпляр AuthService.
 func NewAuthService(db *sql.DB, JWTSecret string) *AuthService {
 	return &AuthService{
 		db:        db,
@@ -21,6 +24,7 @@ func NewAuthService(db *sql.DB, JWTSecret string) *AuthService {
 	}
 }
 
+// Authenticate выполняет аутентификацию пользователя.
 func (s *AuthService) Authenticate(username string, password string) (string, error) {
 	var user models.User
 	err := s.db.QueryRow("SELECT id, username, password_hash, coins FROM users WHERE username=$1", username).Scan(&user.ID, &user.Username, &user.PasswordHash, &user.Coins)

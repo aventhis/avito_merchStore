@@ -1,3 +1,4 @@
+// Package handlers содержит HTTP-обработчики для операций с мерчем.
 package handlers
 
 import (
@@ -7,14 +8,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// BuyHandler обрабатывает запросы на покупку мерча.
 type BuyHandler struct {
 	merchService *service.MerchService
 }
 
+// NewBuyHandler создаёт новый экземпляр BuyHandler.
 func NewBuyHandler(merchService *service.MerchService) *BuyHandler {
 	return &BuyHandler{merchService: merchService}
 }
 
+// BuyMerch обрабатывает запрос на покупку мерча по параметру item и user_id.
+// При успехе возвращает сообщение "Покупка успешна".
 func (h *BuyHandler) BuyMerch(c *gin.Context) {
 	userID := c.GetInt64("user_id")
 	item := c.Param("item")
